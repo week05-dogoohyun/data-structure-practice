@@ -103,7 +103,22 @@ int main()
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+    if (ll1 == NULL || ll2 == NULL) return;
+	ListNode *ll1_ptr = (*ll1).head;
+	ListNode *ll2_ptr = (*ll2).head;
+	while (ll1_ptr != NULL && ll2_ptr != NULL){ 
+		ListNode *ll2_next = (*ll2_ptr).next; // pointer assignment
+		
+		(*ll2_ptr).next = (*ll1_ptr).next;
+		(*ll1_ptr).next = ll2_ptr;
+		
+		(*ll2).size--;
+		(*ll1).size++;
+		
+		ll1_ptr = (*ll2_ptr).next;
+		ll2_ptr = ll2_next;
+	}
+	(*ll2).head = ll2_ptr;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -129,12 +144,12 @@ void printList(LinkedList *ll){
 void removeAllItems(LinkedList *ll)
 {
 	ListNode *cur = ll->head;
-	ListNode *tmp;
+	ListNode *ll2_next;
 
 	while (cur != NULL){
-		tmp = cur->next;
+		ll2_next = cur->next;
 		free(cur);
-		cur = tmp;
+		cur = ll2_next;
 	}
 	ll->head = NULL;
 	ll->size = 0;
