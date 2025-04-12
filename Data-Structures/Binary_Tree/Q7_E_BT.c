@@ -100,9 +100,18 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+#include <limits.h>
+
 int smallestValue(BTNode *node)
 {
 	/* add your code here */
+    if(node == NULL) return INT_MAX; 
+    int smallestVal = node->item;
+    int left_val =  smallestValue(node->left);
+    int right_val = smallestValue(node->right);
+    if (smallestVal > left_val) smallestVal = left_val;
+    if (smallestVal > right_val) smallestVal = right_val;
+    return smallestVal;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

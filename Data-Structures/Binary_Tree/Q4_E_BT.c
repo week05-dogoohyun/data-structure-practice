@@ -101,9 +101,12 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int sumOfOddNodes(BTNode *node)
-
 {
-    /* add your code here */
+    if (node == NULL) return 0;
+    int sub_val = sumOfOddNodes(node->left) + sumOfOddNodes(node->right);
+    if (node->item % 2 == 1) 
+        return sub_val + node->item;
+    else return sub_val;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
