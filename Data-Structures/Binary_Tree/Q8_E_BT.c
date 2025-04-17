@@ -103,6 +103,13 @@ int main()
 int hasGreatGrandchild(BTNode *node)
 {
 	/* add your code here */
+    // 양 자식에서 리턴 받은 depth가 2 이상이면 현재 노드를 프린트하고 1 더한 값을 리턴
+    if (node == NULL) return 0;
+    int maxDepth = hasGreatGrandchild(node->left);
+    int rightDepth = hasGreatGrandchild(node->right);
+    if (maxDepth < rightDepth) maxDepth = rightDepth;
+    if (maxDepth > 2) printf("%d ", node->item);
+    return ++maxDepth;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
